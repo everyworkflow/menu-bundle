@@ -1,0 +1,7 @@
+admin_panel:
+    sidebar_menu:
+        system.menu:
+            label: Menu
+            parent: system
+            path: /system/menu
+            sort_order: 1000

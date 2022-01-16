@@ -1,0 +1,7 @@
+auth:
+  permissions:
+    menu:
+      view: View menu
+      list: List menu
+      save: Save menu
+      delete: Delete menu
