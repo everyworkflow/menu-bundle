@@ -12,6 +12,7 @@ use EveryWorkflow\CoreBundle\Annotation\EwRoute;
 use EveryWorkflow\MenuBundle\Repository\MenuRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class GetMenuController extends AbstractController
 {
@@ -37,7 +38,7 @@ class GetMenuController extends AbstractController
             ]
         ]
     )]
-    public function __invoke(string $code = 'default'): JsonResponse
+    public function __invoke(Request $request, string $code = 'default'): JsonResponse
     {
         $data = [];
 
@@ -48,7 +49,9 @@ class GetMenuController extends AbstractController
             }
         }
 
-        $data['data_form'] = $this->menuRepository->getForm()->toArray();
+        if ($request->get('for') === 'data-form') {
+            $data['data_form'] = $this->menuRepository->getForm()->toArray();
+        }
 
         return new JsonResponse($data);
     }
